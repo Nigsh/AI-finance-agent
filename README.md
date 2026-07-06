@@ -1,110 +1,206 @@
-💰 Finance AI Assistant
+# Finance AI Assistant
 
-A personal finance dashboard that analyzes your spending, suggests monthly budgets, generates charts, and answers questions about your money in plain English — powered by the free Google Gemini API.
+## Overview
 
-Built with Python, Pandas, Matplotlib, and Streamlit.
+Finance AI Assistant is an intelligent personal finance dashboard that helps users analyze spending habits, generate budget recommendations, visualize financial data, and interact with their finances using natural language. Powered by the Google Gemini API, the application combines data analysis with conversational AI to provide actionable financial insights.
 
+Built with Python, Pandas, Matplotlib, and Streamlit, the application offers an intuitive interface for uploading transaction data and exploring spending patterns without requiring any financial expertise.
 
-Features
+---
 
+## Features
 
-📂 Upload a CSV of your transactions (or use the built-in sample data)
-📊 Analyze spending by category — automatic if your CSV doesn't already have categories
-💰 Get monthly budget suggestions with an adjustable savings target
-📈 Visualize your spending with pie charts, bar charts, and a daily trend line
-💬 Ask questions in natural language, e.g.:
+* Upload transaction data from a CSV file or use the included sample dataset.
+* Automatically categorize transactions when category information is missing.
+* Analyze spending across different expense categories.
+* Generate personalized monthly budget recommendations based on a configurable savings goal.
+* Visualize financial data through:
 
-"Where am I spending the most?"
-"How can I reduce my expenses?"
-"Show me a chart of my spending."
+  * Spending distribution (Pie Chart)
+  * Category comparison (Bar Chart)
+  * Daily spending trends (Line Chart)
+* Interact with your financial data using natural language powered by Google Gemini.
+* Receive AI-driven financial insights and recommendations based on your actual transaction history.
 
+### Example Questions
 
+* Where am I spending the most?
+* Which category should I reduce first?
+* How can I save more money each month?
+* Show me a summary of my spending.
+* Generate a spending chart.
 
+---
 
+# Project Structure
 
-
-Project Structure
-
+```text
 finance-ai/
 │
-├── app.py              # Streamlit app — the dashboard and chat UI
-├── finance_agent.py     # Data loading, categorization, budgeting, Gemini API calls
-├── charts.py             # Matplotlib chart generators (pie, bar, trend)
-├── transactions.csv      # Sample transaction data
-├── requirements.txt      # Python dependencies
-└── assets/               # Space for logos/icons if you customize the UI
+├── app.py                # Streamlit application and user interface
+├── finance_agent.py      # Data processing, categorization, budgeting, and Gemini integration
+├── charts.py             # Chart generation using Matplotlib
+├── transactions.csv      # Sample transaction dataset
+├── requirements.txt      # Project dependencies
+└── assets/               # Optional images, logos, and UI resources
+```
 
+---
 
-Setup
+# Technology Stack
 
-1. Get a free Gemini API key
+| Technology        | Purpose                        |
+| ----------------- | ------------------------------ |
+| Python            | Core application logic         |
+| Pandas            | Data processing and analysis   |
+| Matplotlib        | Data visualization             |
+| Streamlit         | Interactive web application    |
+| Google Gemini API | AI-powered financial assistant |
 
+---
 
-Go to Google AI Studio
-Sign in with a Google account
-Create a free API key
+# Installation
 
+## Prerequisites
 
-2. Install requirements
+Before getting started, ensure you have:
 
-Make sure you have Python 3.11+ installed, then:
+* Python 3.11 or later
+* A Google account
+* A free Google Gemini API key
 
-bashcd finance-ai
+---
+
+## Step 1: Obtain a Gemini API Key
+
+1. Visit Google AI Studio.
+2. Sign in with your Google account.
+3. Generate a free Gemini API key.
+4. Copy the generated key for later use.
+
+---
+
+## Step 2: Clone the Repository
+
+```bash
+git clone https://github.com/your-username/finance-ai.git
+cd finance-ai
+```
+
+---
+
+## Step 3: Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-3. Run the app
+---
 
-bashstreamlit run app.py
+## Step 4: Launch the Application
 
-Streamlit will open the app in your browser (usually at http://localhost:8501).
+```bash
+streamlit run app.py
+```
 
-4. Enter your API key
+Once the application starts, open the provided local URL in your browser (typically `http://localhost:8501`).
 
-Paste your Gemini API key into the sidebar text box. It's kept only in your session — nothing is saved to disk.
+---
 
+## Step 5: Configure the API Key
 
-Using Your Own Data
+Enter your Gemini API key in the sidebar.
 
-Upload a CSV with these columns:
+The key is used only during the current session and is never stored on disk.
 
-ColumnRequired?NotesDateYesAny standard date formatDescriptionYesMerchant or transaction descriptionAmountYesNumeric value of the transactionCategoryNoAuto-generated from keywords if missing
+---
 
-If you don't provide a Category column, the app guesses one using keyword matching (e.g. "supermarket" → Groceries, "rent" → Housing). You can always edit the CSV to correct categories before uploading.
+# Using Your Own Data
 
+Upload a CSV file containing your financial transactions.
 
-How It Works
+## Required Format
 
+| Column      | Required | Description                         |
+| ----------- | -------- | ----------------------------------- |
+| Date        | Yes      | Transaction date                    |
+| Description | Yes      | Merchant or transaction description |
+| Amount      | Yes      | Numeric transaction amount          |
+| Category    | No       | Expense category                    |
 
-finance_agent.py loads and cleans the CSV, computes spending summaries, and builds a budget suggestion by scaling each category down toward a savings target (capped at a 30% max cut per category to keep suggestions realistic).
-charts.py turns the cleaned data into Matplotlib figures for the pie chart, bar chart, and daily trend line.
-app.py ties it together into a Streamlit dashboard, and sends a summary of your spending plus your question to Gemini for the chat feature — so the AI's answers are grounded in your actual numbers, not generic advice.
+If the **Category** column is omitted, the application automatically classifies transactions using keyword-based matching.
 
+Example:
 
+* supermarket → Groceries
+* restaurant → Dining
+* rent → Housing
+* fuel → Transportation
 
-Tech Stack
+You can manually edit categories before uploading if you require more accurate classifications.
 
+---
 
-Python — core logic
-Pandas — data loading and aggregation
-Matplotlib — chart generation
-Streamlit — web interface
-Google Gemini API (free tier via google-genai SDK) — natural language Q&A
+# Application Workflow
 
+### Data Processing
 
+The application:
 
-Notes & Limitations
+* Loads and validates transaction data.
+* Cleans missing or inconsistent values.
+* Automatically categorizes transactions when necessary.
+* Calculates spending summaries by category.
+* Generates monthly budget recommendations.
 
+### Budget Recommendation
 
-This is a personal/learning project, not a production financial tool — don't use it for real financial decisions without double-checking the numbers.
-The keyword-based auto-categorization is a simple fallback; it won't be perfectly accurate on unfamiliar merchant names.
-The Gemini free tier has rate limits — if you hit an error in the chat, wait a moment and try again.
+Budget suggestions are generated by reducing spending toward a target savings goal while limiting reductions to a maximum of 30% per category, ensuring practical and realistic recommendations.
 
+### Data Visualization
 
+Interactive visualizations include:
 
-Possible Next Steps
+* Spending distribution by category
+* Category comparison
+* Daily spending trends
 
+These charts provide a clear understanding of financial behavior over time.
 
-Add multi-month comparison charts
-Support recurring transaction detection
-Add expense forecasting
-Export the budget suggestion as a downloadable report
+### AI Financial Assistant
+
+The integrated Gemini model receives:
+
+* Spending summaries
+* Budget analysis
+* User questions
+
+Responses are generated using the uploaded financial data, allowing the assistant to provide context-aware insights instead of generic financial advice.
+
+---
+
+# Example Use Cases
+
+* Analyze monthly expenses
+* Identify high-spending categories
+* Generate personalized budgets
+* Discover spending trends
+* Ask financial questions using natural language
+* Visualize transaction history
+
+---
+
+# Limitations
+
+* Automatic categorization relies on keyword matching and may require manual adjustments for uncommon merchants.
+* Google Gemini Free Tier includes API usage limits. If requests fail due to rate limits, wait briefly before trying again.
+
+# Acknowledgements
+
+This project was developed using:
+
+* Google Gemini API
+* Streamlit
+* Pandas
+* Matplotlib
+* Python
