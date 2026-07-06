@@ -1,4 +1,4 @@
- Finance AI Assistant
+💰 Finance AI Assistant
 
 A personal finance dashboard that analyzes your spending, suggests monthly budgets, generates charts, and answers questions about your money in plain English — powered by the free Google Gemini API.
 
@@ -8,11 +8,11 @@ Built with Python, Pandas, Matplotlib, and Streamlit.
 Features
 
 
- Upload a CSV of your transactions (or use the built-in sample data)
- Analyze spending by category — automatic if your CSV doesn't already have categories
- Get monthly budget suggestions with an adjustable savings target
- Visualize your spending with pie charts, bar charts, and a daily trend line
- Ask questions in natural language, e.g.:
+📂 Upload a CSV of your transactions (or use the built-in sample data)
+📊 Analyze spending by category — automatic if your CSV doesn't already have categories
+💰 Get monthly budget suggestions with an adjustable savings target
+📈 Visualize your spending with pie charts, bar charts, and a daily trend line
+💬 Ask questions in natural language, e.g.:
 
 "Where am I spending the most?"
 "How can I reduce my expenses?"
@@ -95,7 +95,16 @@ Google Gemini API (free tier via google-genai SDK) — natural language Q&A
 Notes & Limitations
 
 
+This is a personal/learning project, not a production financial tool — don't use it for real financial decisions without double-checking the numbers.
 The keyword-based auto-categorization is a simple fallback; it won't be perfectly accurate on unfamiliar merchant names.
 The Gemini free tier has rate limits — if you hit an error in the chat, wait a moment and try again.
 
 
+
+Possible Next Steps
+
+
+Add multi-month comparison charts
+Support recurring transaction detection
+Add expense forecasting
+Export the budget suggestion as a downloadable report
